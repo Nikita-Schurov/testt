@@ -1,7 +1,10 @@
 const express = require('express');
-const path = require('path');
-
+const cors = require('cors');
 const app = express();
+
+// Разрешить все CORS-запросы (для целей разработки)
+app.use(cors());
+
 const port = 3000;
 
 // Установка маршрута для отдачи index.html
