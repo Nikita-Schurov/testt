@@ -1,7 +1,15 @@
-FROM NODE:alpine
+FROM node
 
-copy package.json package.json
-run npm install
+run mkdir /app
+workdir /app
 
-copy . .
+copy package.json /app
+run yarn install
 
+copy . /app
+
+run yarn test
+run NODE_OPTIONS=--openssl-legacy-provider yarn build
+cmd yarn start
+
+expose 3000
