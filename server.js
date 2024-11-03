@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
 // Разрешить все CORS-запросы (для целей разработки)
 app.use(cors());
 
