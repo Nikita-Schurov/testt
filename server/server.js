@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); // Импортируйте модуль path
 const app = express();
+
 // Разрешить все CORS-запросы (для целей разработки)
 app.use(cors());
 
@@ -8,7 +10,7 @@ const port = 3000;
 
 // Установка маршрута для отдачи index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html')); // Теперь path доступен
 });
 
 // Определите API для вычисления квадратного корня
@@ -22,6 +24,10 @@ app.get('/api/sqrt', (req, res) => {
 });
 
 // Запуск сервера
+app.listen(port, () => {
+    console.log(`Сервер запущен на http://localhost:${port}`);
+});
+
 app.listen(port, () => {
     console.log(`Сервер работает на http://localhost:${port}`);
 });
