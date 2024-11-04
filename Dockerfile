@@ -1,15 +1,21 @@
-FROM node
+FROM node:22.11.0 as build
 
-run mkdir /app
-workdir /app
+run mkdir app
+workdir app
 
-copy package.json /app
-run yarn install
+copy package*.json ./
+run npm install
 
-copy . /app
+copy . ./
+run npm run build
 
-run yarn test
-run NODE_OPTIONS=--openssl-legacy-provider yarn build
-cmd yarn start
+cmd node server start
 
-expose 3000
+FROM nginx
+
+copy --from=build /app/dist/. /usr/share/nginx/html	
+copy --from=build /app/my-nginx-app/default /etc/nginx/conf.d/default
+
+expose 80
+
+cmd [ "nginx", "-g", "daemon off;" ]
