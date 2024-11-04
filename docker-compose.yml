@@ -1,0 +1,30 @@
+networks:
+  dev:
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - './front/my-nginx-app/nginx.conf:/etc/nginx/conf.d/default.conf'
+      - '/etc/letsencrypt:/etc/letsencrypt'
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - dev
+
+
+  backend:
+    build:
+      context: ./server
+    networks:
+      - dev
+
+  frontend:
+    build:
+      context: ./front
+    networks:
+      - dev
