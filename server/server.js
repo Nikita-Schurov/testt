@@ -27,7 +27,3 @@ app.get('/api/sqrt', (req, res) => {
 app.listen(port, () => {
     console.log(`Сервер запущен на http://localhost:${port}`);
 });
-
-app.listen(port, () => {
-    console.log(`Сервер работает на http://localhost:${port}`);
-});
