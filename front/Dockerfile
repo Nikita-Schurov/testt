@@ -11,9 +11,9 @@ run npm run build
 
 FROM nginx
 
-copy --from=build /app/dist/. /usr/share/nginx/html	
+copy --from=build /app/dist/. /usr/share/nginx/html
 copy --from=build /app/my-nginx-app/default /etc/nginx/conf.d/default
 
 expose 80
-
+expose 3000
 cmd [ "nginx", "-g", "daemon off;" ]
