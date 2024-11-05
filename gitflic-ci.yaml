@@ -4,5 +4,5 @@ services:
   - docker:dind
 
 build:
-  script:
+  scripts:
     -docker build /front/.
