@@ -1,4 +1,6 @@
 name: Docker
+runs-on: self-hosted
+on: push
 
 jobs:
   build:
